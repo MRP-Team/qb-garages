@@ -269,13 +269,13 @@ RegisterNetEvent('qb-garage:server:PayDepotPrice', function(data)
     end
 end)
 
-RegisterNetEvent("qb-garages:server:removeOldVehicle", function(plate)
+RegisterNetEvent("qb-garages:server:removeOldVehicle", function(plate, citizenid)
     plate = plate
     local vehicles = GetAllVehicles()
     for k, v in pairs(vehicles) do
         local p = GetVehicleNumberPlateText(v)
         if plate == p then
-            print('found Car with plate ' .. plate)
+            TriggerEvent('qb-log:server:CreateLog', 'cardupe', 'Car Duplication', 'red', string.format('Car with plate(%s) was deleted due to action from %s', plate, citizenid), true)
             DeleteEntity(v)
         end
     end
