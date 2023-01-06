@@ -815,6 +815,7 @@ RegisterNetEvent('qb-garages:client:TakeOutDepot', function(data)
     if not vehExists then
         local PlayerData = QBCore.Functions.GetPlayerData()
         if PlayerData.money['cash'] >= vehicle.depotprice or PlayerData.money['bank'] >= vehicle.depotprice then
+            TriggerServerEvent("qb-garages:server:removeOldVehicle", data.vehicle.plate)
             TriggerEvent("qb-garages:client:TakeOutGarage", data, function (veh)
                 if veh then
                     TriggerServerEvent("qb-garage:server:PayDepotPrice", data)

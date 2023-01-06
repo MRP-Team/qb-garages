@@ -269,6 +269,17 @@ RegisterNetEvent('qb-garage:server:PayDepotPrice', function(data)
     end
 end)
 
+RegisterNetEvent("qb-garages:server:removeOldVehicle", function(plate)
+    plate = plate
+    local vehicles = GetAllVehicles()
+    for k, v in pairs(vehicles) do
+        local p = GetVehicleNumberPlateText(v)
+        if plate == p then
+            print('found Car with plate ' .. plate)
+            DeleteEntity(v)
+        end
+    end
+end)
 
 --External Calls
 --Call from qb-vehiclesales
