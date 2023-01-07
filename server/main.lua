@@ -275,7 +275,7 @@ RegisterNetEvent("qb-garages:server:removeOldVehicle", function(plate, citizenid
     for k, v in pairs(vehicles) do
         local p = GetVehicleNumberPlateText(v)
         if plate == p then
-            TriggerEvent('qb-log:server:CreateLog', 'cardupe', 'Car Duplication', 'red', string.format('Car with plate(%s) was deleted due to action from %s', plate, citizenid), true)
+            TriggerEvent('qb-log:server:CreateLog', 'cardupe', 'Car Duplication', 'red', string.format('Car owned by %s under plate %s was deleted due to duplication', citizenid, plate), true)
             DeleteEntity(v)
         end
     end
