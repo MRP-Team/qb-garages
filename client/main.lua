@@ -617,24 +617,16 @@ end
 
 function UpdateSpawnedVehicle(spawnedVehicle, vehicleInfo, heading, garage, properties)
     QBCore.Functions.SetVehicleProperties(spawnedVehicle, properties)
-    local plate = QBCore.Functions.GetPlate(spawnedVehicle)
     if garage.useVehicleSpawner then
-        if plate then
-            OutsideVehicles[plate] = spawnedVehicle
-            TriggerServerEvent('qb-garages:server:UpdateOutsideVehicles', OutsideVehicles)
-        end
         if FuelScript then
             exports[FuelScript]:SetFuel(spawnedVehicle, 100)
         else
             exports['LegacyFuel']:SetFuel(spawnedVehicle, 100) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
         end
+        local plate = QBCore.Functions.GetPlate(spawnedVehicle)
         TriggerEvent("vehiclekeys:client:SetOwner", plate)
         TriggerServerEvent("qb-garage:server:UpdateSpawnedVehicle", plate, true)
     else
-        if plate then
-            OutsideVehicles[plate] = spawnedVehicle
-            TriggerServerEvent('qb-garages:server:UpdateOutsideVehicles', OutsideVehicles)
-        end
         if FuelScript then
             exports[FuelScript]:SetFuel(spawnedVehicle, vehicleInfo.fuel)
         else
