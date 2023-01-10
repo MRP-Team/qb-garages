@@ -624,7 +624,7 @@ function UpdateSpawnedVehicle(spawnedVehicle, vehicleInfo, heading, garage, prop
             exports['LegacyFuel']:SetFuel(spawnedVehicle, 100) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
         end
         local plate = QBCore.Functions.GetPlate(spawnedVehicle)
-        TriggerEvent("vehiclekeys:client:SetOwner", plate)
+        -- TriggerEvent("vehiclekeys:client:SetOwner", plate)
         TriggerServerEvent("qb-garage:server:UpdateSpawnedVehicle", plate, true)
     else
         if FuelScript then
@@ -636,7 +636,7 @@ function UpdateSpawnedVehicle(spawnedVehicle, vehicleInfo, heading, garage, prop
         SetAsMissionEntity(spawnedVehicle)
         ApplyVehicleDamage(spawnedVehicle, vehicleInfo)
         TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicleInfo.plate, vehicleInfo.garage)
-        TriggerEvent("vehiclekeys:client:SetOwner", vehicleInfo.plate)
+        -- TriggerEvent("vehiclekeys:client:SetOwner", vehicleInfo.plate)
     end
     SetEntityHeading(spawnedVehicle, heading)
     SetAsMissionEntity(spawnedVehicle)
